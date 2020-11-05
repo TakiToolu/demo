@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>shopping-list</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+</head>
+<body>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="
+    node_modules/axios/dist/axios.js"></script>
+    <div id="app">
+        <div class="container">
+            <div class="row">
+                <table class="table table-hover table-bordered">
+                    <caption class="h2 text-center text-warning">我的购物车</caption>
+                    <tr>
+                        <th>全选
+                            <input type="checkbox" v-model="checkAll">
+                        </th>
+                        <td>商品</th> 
+                        <td>单价</th>
+                        <td>数量</th>
+                        <td>小计</th> 
+                        <td>操作</th>
+                    </tr>
+                    <tr v-for=“(product,index) in products”>
+                        <td><input type="checkox" v-model="product.isSelected"></td>
+                         <td>
+                            <img :src="product.productCover" :title="product.productName" >
+                            {{product.productInfo}}
+                        </td>
+                        <td >{{product.productPrice}}</td>
+                        <td ><input type="number" v-model="product.productCount"></td>
+                        <td>{{product.productCount*productPrice}}</td>
+                        <td><button class="btn btn-danger">删除</button></td>
+
+                    </tr>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+   
+    
+
+    <script>
+
+        let vm = new Vue({
+            el:'#app',
+            data:{
+
+                checkAll:true,
+                products:[]
+
+            },
+            created(){
+                this.getData();
+            },
+            methods:{
+                getData(){
+                    axios.get('./carts.json').then()
+                },
+            },
+            computed:{
+
+            }
+        })
+    </script>
+
+    
+</body>
+</html>

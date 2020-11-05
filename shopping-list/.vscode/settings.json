@@ -1,0 +1,24 @@
+{
+    // prettier:每行在这个字符数内整合代码，如果你的屏幕较宽分辨率较高可以适当加大
+  "prettier.printWidth": 120,
+  // prettier:是否在每行末尾加上分号
+  "prettier.semi": false,
+  // prettier:如果为true，将使用单行否则使用双引号
+  "prettier.singleQuote": true,
+  // vetur:对html的内容使用js-beautify-html
+  "vetur.format.defaultFormatter.html": "js-beautify-html",
+  "files.autoSave":"off",
+  "emmet.syntaxProfiles": {
+    "vue-html": "html",
+    "vue": "html"
+  },
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "html",
+    { "language": "vue", "autoFix": true }
+  ],
+  "eslint.options": {
+    "plugins": ["html"]
+  }
+}

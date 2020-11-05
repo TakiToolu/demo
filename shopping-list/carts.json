@@ -1,0 +1,15 @@
+[{
+    "isSelected":true,
+    "productCover":"https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3384327252,2309271350&fm=26&gp=0.jpg",
+    "productName":"夏目友人帐 第一季",
+    "productInfo":"基本信息1",
+    "productPrice":38.2,
+    "productCount":3
+},{
+    "isSelected":true,
+    "productCover":"https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=3119530230,3949042974&fm=26&gp=0.jpg",
+    "productName":"夏目友人帐 第二季",
+    "productInfo":"基本信息2",
+    "productPrice":56.8,
+    "productCount":7
+}]
