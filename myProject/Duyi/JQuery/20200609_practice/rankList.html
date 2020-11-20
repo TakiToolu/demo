@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>排行榜</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .tpl{
+            display: none;
+        }
+        .clearF::after{
+            /*清除浮动*/
+            content: '';
+            display: block;
+            clear: both;
+            overflow: hidden;
+        }
+        .wrapper{
+            border: 1px solid #cccccc;
+            padding: 10px 5px;
+            width: 350px;
+            margin: 100px auto 0px;
+        }
+        .wrapper .headSection{
+            margin-bottom: 10px;
+        }
+        .wrapper .headSection .hot{
+            font-weight: bold;
+            font-size: 18px;
+            float: left;
+        }
+        .wrapper .headSection .change{
+            float: right;
+            color: #60bce0;
+            cursor: pointer;
+        }
+        .wrapper .showSection .number{
+            color: white;
+            background-color: #60bce0;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            display: inline-block;
+        }
+        .wrapper .showSection li{
+            padding: 5px;
+            border-bottom: 1px solid #cccccc;
+        }
+        .wrapper .showSection .mes{
+            float: right;
+        }
+        .wrapper .showSection .mes::after{
+            content: '';
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-size: 100% 100%;
+            /*background-position-y:4px;*/
+        }
+        .wrapper .showSection .mes.up::after{
+            background-image:url("./img/up.png");
+        }
+        .wrapper .showSection .mes.down::after{
+            background-image:url("./img/down.png");
+        }
+    </style>
+    
+</head>
+<body>
+<div class="wrapper">
+    <div class="headSection clearF">
+        <span class="hot">搜索热点</span>
+        <span class="change">换一换</span>
+    </div>
+    <ul class="showSection">
+        <li class="tpl clearF">
+            <span class="number">1</span>
+            <span class="title">金星</span>
+            <span class="mes">2345</span>
+        </li>
+    </ul>
+</div>
+
+<script src="./serverData.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    (function (data) {
+        //初始化变量
+        var $wrapper=$('.wrapper');
+        var $showSection=$('.showSection');
+        var colorsArray=['#f54545','#ff8547','#ffac38'];
+        var curPage =0;//当前页数10
+        var totalPage = Math.ceil(data.length/10);
+        $showSection.hide();
+        function bindEvent() {
+            $wrapper.find('.change').on('click',function () {
+                curPage=++curPage%totalPage;
+                renderPage(data);
+            })
+        }
+
+        function renderPage(data) {
+            //清空之前的值
+            $showSection.hide().find('.showItem').remove();
+            //根据数据渲染页面
+            var len = (data.length-curPage*10)>10?10:(data.length-curPage*10);
+           //控制每一页应该渲染多少值
+            for (var i = 0; i < len; i++) {
+                var $Clone = $wrapper.find('.tpl').clone().removeClass('tpl').addClass('showItem');
+                var ele = data[i+curPage*10];
+                $Clone.children('span').eq(0)
+                    .text(i+curPage*10+1).css('backgroundColor',curPage==0 && colorsArray[i+curPage])
+                        .next().text(ele.title)
+                            .next().text(ele.search)
+                            .addClass(ele.search>ele.hisSearch?'up':ele.search<ele.hisSearch?'down':'');
+                $showSection.append($Clone);
+            }
+            $showSection.fadeIn();
+        }
+        renderPage(data);
+        bindEvent();
+
+    })(data);
+
+</script>
+
+</body>
+</html>

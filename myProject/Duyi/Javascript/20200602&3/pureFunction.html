@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纯函数</title>
+</head>
+<body>
+<script>
+    // var num= 18;
+    // function compare(x) {
+    //     return x>num;
+    // }
+    // console.log(compare(20));
+    var arr=[{name:'zxx'}];
+    function  add(_arr) {
+        var obj={age:13};
+        var newArr=[];
+        for (var i = 0; i < _arr.length; i++) {
+            newArr[i]=deepClone(_arr[i]);
+        }
+        newArr.push(obj);
+        console.log(newArr);
+        return newArr;
+    }
+    console.log(arr);
+    var newArr=add(arr);
+    newArr.name='xinxinzi';
+    console.log(newArr);
+    console.log(arr);
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="wap">
+<!--sibling-->
+    <ul><span>span-1</span>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <span>span-2</span>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <span>span-3</span>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+    </ul>
+
+<!--    parent-->
+    <div class="shop" data-id="101">
+        <p>basketball-Nike</p>
+        <button>add</button>
+    </div>
+    <div class="shop" data-id="102">
+        <p>basketball-Addidas</p>
+        <button>add</button>
+    </div>
+</div>
+<div class="wrapper">
+</div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script>
+        //sibling
+        $('li').eq(4).css('backgroundColor','red');
+
+        //parent,parents()
+        $('button').click(function () {
+            console.log($(this).parent());
+        })
+
+        var showArr=[{
+            name:"lining",
+            id:'li'
+        },{
+            name:"Yonex",
+            id:'yy'
+        }];
+        var str='';
+        showArr.forEach(function (ele,index) {
+            str+='<div class="shop" data-id="'+ele.id+'"><p>'+ele.name+'</p><button>add</button>';
+        });
+        console.log(str);
+        console.log($('wrapper'));
+        $('.wrapper').html(str);
+        var carArr=[];
+        $('button').click(function () {
+            carArr.push($(this).parent().attr('data-id'));
+        })
+
+
+        console.log($('button').parents())//.eq(2));
+
+        //.closest() 从自己开始找，离他最近的父级
+        //.offsetParent()最近的 有定位的父级
+        //.slice()，【左，右)
+
+
+    </script>
+</body>
+</html>

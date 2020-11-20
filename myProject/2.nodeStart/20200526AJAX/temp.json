@@ -1,0 +1,11 @@
+[
+  {
+    "name": "张三"，
+    "age": "14",
+    "score": [
+      "english":98,
+      "math":98,
+      "chinese":98
+    ]
+  }
+]

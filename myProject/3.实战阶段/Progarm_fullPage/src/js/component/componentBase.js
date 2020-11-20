@@ -1,0 +1,3 @@
+var ComponentFactory =function(config){
+    
+}

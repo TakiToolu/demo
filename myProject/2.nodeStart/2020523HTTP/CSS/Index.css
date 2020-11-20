@@ -1,0 +1,16 @@
+ *{
+     margin: 0;
+     padding: 0;
+ }
+ html,body{
+     font-family:"Microsoft YaHei UI";
+     font-size: 14px;
+     color: #0d3462;
+ }
+ .box{
+     width: 300px;
+     height: 300px;
+     margin:100px auto;
+     background-color: #9fd7dc;
+     border: 1px solid #0d3462;
+ }

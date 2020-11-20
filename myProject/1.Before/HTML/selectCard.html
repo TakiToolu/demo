@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>selectCard</title>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .tabBox{
+            margin: 20px auto;
+            width: 500px;
+
+        }
+        .tabBox ul{
+            position: relative;
+            top:2px;
+        }
+        .tabBox ul li{
+            display: inline-block;
+            padding: 0 5px;
+            margin-right: 10px;
+            line-height: 33px;
+            border:1px solid black;
+            cursor: pointer;
+        }
+        .tabBox div{
+            line-height: 148px;
+            text-align: center;
+            border:1px solid #AAA;
+            display: none;
+        }
+
+
+        .tabBox div.active{
+            display: block;
+        }
+        .tabBox ul li.active{
+            border-bottom-color: white;
+            color: aquamarine;
+            font-weight: bold;
+        }
+        /*.tabBox li:hover{*/
+        /*    border-bottom-color: white;*/
+        /*    color: aquamarine;*/
+        /*    font-weight: bold;*/
+        /*}*/
+
+    </style>
+
+</head>
+<body>
+<div class="tabBox" id="tabBox">
+    <ul>
+        <li class="active">新闻</li>
+        <li>电影</li>
+        <li>音乐</li>
+        <div class="active">第一页的内容</div>
+        <div>第二页的内容</div>
+        <div>disanue</div>
+    </ul>
+</div>
+<script src="../JS/tabBox.js "></script>
+
+</body>
+</html>

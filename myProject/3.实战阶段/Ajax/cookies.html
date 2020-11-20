@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>cookies</title>
+</head>
+<body>
+<script>
+    var manageCookies={
+        setCookie: function(name,value,time){
+            document.cookie = name+"="+value+";Max-age="+time;
+            return this;
+        },
+        removeCookie: function(name){
+            return setCookie(name,'',-1);
+        },
+        getCookie:function(name){
+            var allCookiesArr=document.cookie.split(';');
+            for(var i=0;i<allCookiesArr.length;i++){
+                var curCookie=allCookiesArr[i].split('=');
+                if(curCookie[0]==name){
+                    console.log("curCookie"+curCookie[1]);
+                    // return curCookie[1];
+
+                }
+            }
+            return this;
+        }
+    }
+
+
+
+    var oDate= new Date;
+    oDate=oDate+3;
+    document.cookie='age=14;Max-Age=100000';
+    document.cookie='ncc=zxx;Expires='+oDate;
+    console.log(document.cookie);
+
+manageCookies
+        .getCookie(ncc)
+        .setCookie(lala,"kjdkg",100000)
+        .removeCookie(age)
+        .getCookie(lala);
+        
+
+</script>
+
+
+</body>
+</html>9

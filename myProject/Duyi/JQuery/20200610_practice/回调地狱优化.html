@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>电影</title>
+    <style>
+        *{
+            padding: 0px;
+            margin:0px ;
+
+        }
+        .wrapper{
+            width: 390px;
+            /*height: 700px;*/
+            border: 2px solid black;
+            overflow: hidden;
+            margin: 50px  auto 0px;
+        }
+        .tpl{
+            display: none;
+        }
+        .movieSection{
+            width: 100px;
+            height: 150px;
+            float: left;
+            border: 1px solid #cccccc;
+            margin: 14px;
+        }
+        .movieSection img{
+            width: 100%;
+            height: 120px;
+            cursor: pointer;
+        }
+        .movieSection h3{
+            height: 20px;
+            margin: 0 auto;
+            border: 1px solid #60bce0;
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="movieSection tpl">
+        <img src="./img/1.jpg" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+    <div class="movieSection">
+        <img src="./img/1.jpg" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+    <div class="movieSection">
+        <img src="" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+    <div class="movieSection">
+        <img src="" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+    <div class="movieSection">
+        <img src="" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+    <div class="movieSection">
+        <img src="" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+    <div class="movieSection">
+        <img src="" alt="">
+        <h3 class="movieName"></h3>
+    </div>
+</div>
+
+<script src="./data.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+
+    //三角形，里面循环回调反应=》回调地狱
+    //设计模式=》解决 $.Deferred()  即$.ajax()的返回值
+    (function () {
+        return  $.ajax({
+            url:'',
+            type:'POST',
+            data: {
+                username: 'zxx',
+                password: '123123'
+            }
+        });
+    })().then(function (res) {//成功
+        if(res.data.power == 'root'){
+            return  $.ajax({
+                url:'',
+                type:'GET',})
+        }
+    }).then(function (res) {
+        var data = res.data;
+        var $Wrapper = $('.wrapper');
+        var df = $Deferred();
+        $.each(data,function (index,ele) {
+            //ele.name ele.poster
+            var df=$.Deferred;
+            var $MovieSection = $('.movieSection').clone().removeClass('tpl').addClass('movieSection');
+            $MovieSection.data({id: ele.id})
+                .on('click',function () {
+                    df.resolve(this);
+                })
+                .children()
+                .eq(0).attr('src', ele.poster)//poste为图片位置
+                .next().text(ele.name);
+            $(htmlStr).appendTo('body');
+        });
+        return df.promise();
+    }).then(function () {
+       return  $.ajax({
+            url: '',//电影列表请求
+            type: 'GET',
+            data: {
+                // movieId: $(this).data('id')
+                movieId: dom.data('id');
+            }
+        })
+    }).then(function (res) {
+        var data = res.data;
+        var direct = data.direct;
+        var gut = data.gut;
+        var mainActor = data.mainActor;
+        var screenWriter = data.screenWriter;
+        var htmlStr = '<div class="mask">' +
+            '<p>导演：'+direct+'</p>' +
+            '<p>剧情：'+gut+'</p>' +
+            '<p>主演：'+mainActor.reduce(function (prev) {
+                prev+=curv+'';
+                return prev;
+            })+'</p>' +
+            '</div>'
+        $(htmlStr).appendTo('body')
+            .css({position:'absolute',
+                left:$(window).outerWidth()/2,
+                bottom:100,width:400,
+                marginLeft:-200})//$('.mask').outerWidth()/2})
+    })
+
+
+/*
+    $.ajax({
+        url:'',
+        type:'POST',
+        data:{
+            username:'zxx',
+            password:'123123'
+        },
+        success:function (res) {
+            if(res.data.power == 'root')
+                //获取用户权限为OK
+                //进一步请求页面
+                $.ajax({
+                    url:'',
+                    type:'GET',
+                    success: function (res) {
+                        // console.log(res);
+                        var data = res.data;
+                        var $Wrapper = $('.wrapper')
+                        $.each(data,function (index,ele) {
+                            //ele.name ele.poster
+                            var $MovieSection=$('.movieSection').clone().removeClass('tpl').addClass('movieSection');
+                            $MovieSection.data({id:ele.id}).on('click',function () {
+                                $.ajax({
+                                    url:'',//电影列表请求
+                                    type:'GET',
+                                    data:{
+                                        movieId: $(this).data(id)
+                                    },
+                                    success:function () {
+                                        var data = res.data;
+                                        var direct = data.direct;
+                                        var gut = data.gut;
+                                        var mainActor = data.mainActor;
+                                        var screenWriter = data.screenWriter;
+                                        var htmlStr = '<div class="mask">' +
+                                            '<p>导演：'+direct+'</p>' +
+                                            '<p>剧情：'+gut+'</p>' +
+                                            '<p>主演：'+mainActor.reduce(function (prev) {
+                                                prev+=curv+'';
+                                                return prev;
+                                            })+'</p>' +
+                                            '</div>'
+                                        $(htmlStr).appendTo('body')
+                                            .css({position:'absolute',
+                                                left:$(window).outerWidth()/2,
+                                                bottom:100,width:400,
+                                                marginLeft:-200})//$('.mask').outerWidth()/2})
+                                    }
+
+                                })
+                            }).children()
+                                .eq(0).attr('src',ele.poster)//poste为图片位置
+                                .next().text(ele.name);
+
+                        })
+
+                    }
+
+                })
+            console.log(res);
+        }
+    })
+ */
+</script>
+
+</body>
+</html>

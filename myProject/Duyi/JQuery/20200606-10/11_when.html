@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script src="../20200610_practice/data.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    //参数可以是一个或多个延迟对象
+    //返回值是promise对象
+    $.when(creatScore1,creatScore2,creatScore3).then(function () {
+        //参数全部触发成功
+        console.log('成功');
+    },function () {
+        //只有有一个失败触发
+        console.log('有一个失败');
+    })
+
+    function creatScore1() {
+        var df=$.Deferred();
+        setInterval(function () {
+            var score = Math.random() * 100;
+            console.log('1: '+score);
+            if (score > 70) {
+                df.resolve();//done
+            } else if (score < 60) {
+                df.reject();
+            } else {
+                df.notify();
+            }
+        }, 1000);
+        //done ,为了只在这里才能调用df，外界不能,只返回一个阉割版的df，只注册不触发
+        return df.promise();
+    }
+    function creatScore2() {
+        var df=$.Deferred();
+        setInterval(function () {
+            var score = Math.random() * 100;
+            console.log('2: '+score);
+            if (score > 80) {
+                df.resolve();//done
+            } else if (score < 60) {
+                df.reject();
+            } else {
+                df.notify();
+            }
+        }, 1000);
+        //done ,为了只在这里才能调用df，外界不能,只返回一个阉割版的df，只注册不触发
+        return df.promise();
+    }
+    function creatScore3() {
+        var df=$.Deferred();
+        setInterval(function () {
+            var score = Math.random() * 100;
+            console.log('3: '+score);
+            if (score > 90) {
+                df.resolve();//done
+            } else if (score < 60) {
+                df.reject();
+            } else {
+                df.notify();
+            }
+        }, 1000);
+        //done ,为了只在这里才能调用df，外界不能,只返回一个阉割版的df，只注册不触发
+        return df.promise();
+    }
+
+</script>
+
+
+</body>
+</html>

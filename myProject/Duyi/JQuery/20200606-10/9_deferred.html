@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<script src="../20200610_practice/data.js"></script>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    //延迟
+    var df = creatScore();
+    //done 成功 fail 失败 process正在进行中
+    //resolve  reject    notify
+
+    //注册成功时的调用函数
+    df.done(function (ms) {
+        console.log('done');
+    })
+    //注册失败调用函数
+    df.fail(function (ms) {
+        console.log('fail');
+    })
+    //注册进行时调用函数
+    df.progress(function (ms) {
+        console.log('ing');
+    })
+
+    //
+
+
+    //做一件异步的事情,为了只在这里才能调用df
+    function creatScore() {
+        var df=$.Deferred();
+        setInterval(function () {
+            var score = Math.random() * 100;
+            if (score > 90) {
+                df.resolve();//done
+            } else if (score < 60) {
+                df.reject();
+            } else {
+                df.notify();
+            }
+        }, 1000);
+    //done ,为了只在这里才能调用df，外界不能,只返回一个阉割版的df，只注册不触发
+        return df.promise();
+    }
+
+
+</script>
+
+</body>
+</html>

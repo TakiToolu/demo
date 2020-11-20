@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AJAX</title>
+</head>
+<body>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    $.ajax({
+        url:'www.baidu.com',
+        type:'GET',//post
+        data:{},//参数，信息
+        //成功请求后的处理函数
+        success:function (res) {
+            $.each(res.data,function (index,ele) {
+                console.log(ele);
+            });
+            console.log(res);
+
+        },
+        error:function (e) {
+            console.log(e.status,e.statusText);
+        },
+        complete:function () {},
+        context: $('.wrapper'),//传this，以便可操作，改变函数上下文
+        //timeout: //超时
+        //async:true,//异步true
+        //dataType:'jsonp',
+
+    })
+</script>
+
+</body>
+</html>

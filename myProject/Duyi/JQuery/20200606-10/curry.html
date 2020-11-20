@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+
+
+    function add(a,b,c,d) {
+        return a+b+c+d;
+    }
+    function  FixedParmasCurry(fn) {
+        var _arg=[].slice.call(arguments,1);
+        return function () {
+            var newArg=_arg.concat([].slice.call(arguments,0));
+            return fn.apply(this,newArg);
+        }
+
+    }
+
+    function Curry(fn,length) {
+        //lengh=4
+        var lengh=lengh||fn.length;//fn.lengh为fn的参数个数
+        return function () {
+            if(arguments.length<lengh){
+                var combined=[fn].concat([].slice.call(arguments,0));
+                return Curry(FixedParmasCurry.apply(this,combined),length-arguments.length);
+            }else{
+                return fn.apply(this,arguments);
+            }
+        }
+
+    }
+    var newAdd=Curry(add);
+    var temp=newAdd(1,2);
+    var sum=temp(3,4,5);
+
+    console.log(sum);
+
+</script>
+
+</body>
+</html>

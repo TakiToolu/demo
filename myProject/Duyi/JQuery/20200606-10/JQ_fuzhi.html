@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo1{
+            height: 30px;
+            width: 30px;
+            background-color: #9fd7dc;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .active{
+            background-color: #ff7fbb;
+        }
+        .wrapper .style1{
+            background-color: #ccffff;
+        }
+        .wrapper .style1 li{
+            color: #60bce0;
+        }
+        .wrapper .style2{
+            background-color: #e3c5ec;
+        }
+        .wrapper .style2 li{
+            color: #ef09f6;
+        }
+
+        .wrapper .active .style1{
+            background-color: #ccffff;
+        }
+        .wrapper .active .style1 li{
+            color: #60bce0;
+        }
+        .wrapper .active .style2{
+            background-color: #e3c5ec;
+        }
+        .wrapper .active .style2 li{
+            color: #ef09f6;
+        }
+
+
+    </style>
+</head>
+<body>
+<ul>
+    <li>
+        <span></span>
+    </li>
+    <li class="box">2</li>
+    <li class="demo">3</li>
+    <li class="demo">4</li>
+    <li class="demo">5</li>
+
+    <div class="demo1"></div>
+    <div class="demo1"></div>
+    <div class="demo1"></div>
+</ul>
+<div class="wrapper">
+    <ul class="style1">
+        <li class="demo2 iddd" zxx="shuxing1">1</li>
+        <li class="demo2 ijjj" zxx="shuxing2">2</li>
+        <li class="demo2">3</li>
+        <li class="demo2">4</li>
+        <li class="demo2">5</li>
+    </ul>
+    <ul class="style2">
+        <li class="demo3">1</li>
+        <li class="demo3">2</li>
+        <li class="demo3">3</li>
+        <li class="demo3">4</li>
+        <li class="demo3">5</li>
+    </ul>
+    <input type="checkbox" checked="false">
+</div>
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<!--<script src="./JS/myJQuery.js"></script>-->
+<script>
+    var arrName=['赵晓','理性','wanngwan','zhaokai','baituo']
+    $('ul li').html(function (index,ele) {
+        console.log('text');
+        return '<p style="color:orange">'+arrName[index]+'</p>';
+    })
+    //取值第一个，赋值全都赋值,文本的赋值，
+
+    $('ul li').html('9');
+
+    //获取文本
+   // console.log($('ul').text());
+    //console.log($('ul li').text());
+    //获取长度
+  //  console.log($('ul li').size());;
+
+    //.addClass()增加类名\函数
+    $('ul li').eq(1).addClass('active dudu');
+    $('.demo').addClass(function (index,ele) {
+         if(index%2==0){
+             return 'zxx'+(index+1);
+         }
+         return 'active';
+    })
+
+    //removeClass() return值为删掉的类
+    $('ul li').removeClass(function (index,ele) {
+        if(index%2==0){
+            return 'demo';
+        }
+    })
+
+    //hasClass()  有类名返回true
+    $('.demo1').click(function () {
+        // $('.demo1').removeClass('active');
+        // $(this).addClass('active');
+
+        $('.demo1').css({backgroundColor:'#9fd7dc'});
+        $(this).css({backgroundColor: '#ff7fbb'});
+
+    })
+    $('.wrapper ul li').click(function (ele,index) {
+        if($(this).hasClass('active')){
+            $(this).removeClass('active');
+        }else {
+            $(this).addClass('active');
+        }
+    })
+
+    //css()
+    $('.demo2').css('width',200);
+    $('.style1').css({width: '500'})
+    $('.demo2').css({width:'+=100'})
+    //css取值
+    console.log($('.style1').css('backgroundColor'));//=>rgb()
+
+
+    //attr 基于 setAttribute getAttribute
+    //取值
+    console.log($('.demo2').attr('class'));
+    console.log($('.demo2').attr('zxx'));
+    //checked赋值不赋值值都是checked
+    console.log($('input').attr('checked'));
+    //赋值
+    $('.demo2').eq(2).attr('zxx','tes1');
+
+
+    //prop 特性映射，非特性不能映射
+    //取值
+    console.log($('.demo2').prop('zxx'));//非特性的属性=》undefined
+    console.log($('input').prop('checked'));
+    //input 的checked在new时默认勾选，所以不管设值多少，只要定义就为true;不定义checked返回false
+    //赋值
+    $('.demo2').eq(2).prop('class','tes1');
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>函数记忆</title>
+</head>
+<body>
+<script>
+    var count=0;
+    var cache=[];
+
+    function factorial(num) {
+       // count++;
+        if(num==0||num==1){
+          //  cache[0]=1;
+          //  cache[1]=1;
+            return 1;
+        }
+        return num*factorial(num-1);
+    }
+
+    function memorize(fn) {
+        var cache={};
+        return function () {
+            var key=arguments.length+Array.prototype.join.call(arguments);
+            if(key){
+                return cache[key];
+            }else{
+                fn.apply(this,arguments);
+                return cache[key];
+            }
+
+        }
+
+    }
+
+    for (var i= 0; i < 5; i++) {
+       // console.log(factorial(i));
+       // console.log(count);
+    }
+
+
+
+
+</script>
+
+
+
+</body>
+</html>

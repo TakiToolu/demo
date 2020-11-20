@@ -1,0 +1,64 @@
+*{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.wrapper{
+    padding: 10px 15px;
+    width: 400px;
+    border: 1px solid #ccc;
+    margin: 100px auto 0px;
+    border-radius: 6px;
+}
+.wrapper .sWrapper{
+    padding: 5px;
+    margin: 10px 0px;
+
+
+}
+.wrapper .sWrapper input{
+    line-height: 25px;
+    margin-left: 12px;
+}
+.wrapper .sWrapper .btn{
+    cursor: pointer;
+    color: #7fb2ff;
+    padding: 0px 10px;
+    top: 9px;
+    font-weight: bolder;
+}
+.wrapper .sWrapper .btn.active {
+    background-color: #0d3462;
+    color: white;
+    border-radius: 20%;
+}
+
+.wrapper .flWrapper{
+    height: 360px;
+}
+.wrapper  .flWrapper ul li{
+    position: relative;
+    border-bottom: #92b8e5 solid 1px;
+    padding: 5px;
+    padding-left: 55px;
+    margin: 10px;
+}
+.wrapper  .flWrapper img{
+    width: 40px;
+    position: absolute;
+    margin-left: -50px;
+    overflow: hidden;
+    text-align: center;
+
+}
+.name{
+    /*font-weight: bold;*/
+}
+.des{
+    font-weight: lighter;
+    font-size: small;
+    display: inline-block;
+    margin-top: 5px;
+
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>value</title>
+
+</head>
+<body>
+<body>
+    <div class="wrapper">
+        all<input type="checkbox"> </input>
+        <h1>吃货清单</h1>
+        all<input type="checkbox"> </input>
+        <h2>水果</h2>
+        全选<input type="checkbox"> </input>
+        banana:<input type="checkbox">
+        apple:<input type="checkbox">
+        orange:<input type="checkbox">
+
+        <h2>蔬菜</h2>
+        全选<input type="checkbox"> </input>
+        萝卜:<input type="checkbox">
+        土豆:<input type="checkbox">
+        番茄:<input type="checkbox">
+
+        <h1>明星清单</h1>
+        all<input type="checkbox"> </input>
+        <h2>nba</h2>
+        all<input type="checkbox"> </input>
+        cobe<input type="checkbox"> </input>
+        Rose:<input type="checkbox">
+        Curry:<input type="checkbox">
+        James:<input type="checkbox">
+
+
+        <input type="button" value="submit"> </input>
+    </div>
+</body>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    //.val 获取表单相关元素的val值 html
+    //操作表单元素可以取值赋值，设置value可显示原因：因为行间属性是特性，有一一映射关系
+    // 但是基于标签元素不可显示=》dom元素的属性设置
+
+    //nextAll(),preAll()
+    // $('input[type="checkbox"]').eq(0).click(function () {
+    //     if($(this).prop('checked')){
+    //         $(this).nextAll('input[type="checkbox"]').prop('checked',true);
+    //     }else{
+    //         $(this).nextAll('input[type="checkbox"]').prop('checked',false);
+    //     }
+    // })
+    //
+    //nextUntil
+    // $('h1').next().click(function () {
+    //     if($(this).prop('checked')){
+    //         $(this).nextUntil('h1','input[type="checkbox"]').prop('checked',true);
+    //     }else{
+    //         $(this).nextUntil('h1').prop('checked',false);
+    //     }
+    // })
+
+
+    $('input').eq(0).click(function () {
+        if($(this).prop('checked')){
+            $(this).nextAll('input[type=checkbox]').prop('checked',true);
+        }else{
+            $(this).nextAll('input[type=checkbox]').prop('checked',false);
+        }
+    })
+
+    $('h1').next().click(function () {
+        if($(this).prop('checked')){
+            $(this).nextUntil('h1','input[type="checkbox"]').prop('checked',true);
+        }else{
+            $(this).nextUntil('h1','input[type="checkbox"]').prop('checked',false);
+        }
+
+    })
+    $('h2').next().click(function () {
+        if($(this).prop('checked')){
+            $(this).nextUntil('h2','input[type="checkbox"]').prop('checked',true);
+        }else{
+            $(this).nextUntil('h2','input[type="checkbox"]').prop('checked',false);
+        }
+
+    })
+
+
+</script>
+</body>
+</html>

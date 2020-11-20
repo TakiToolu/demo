@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>>
+<root>
+    <student>
+        <name>张三</name>
+        <age>14</age>
+        <score>
+            <english>90</english>
+            <math>100</math>
+            <chinese>88</chinese>
+        </score>
+    </student>
+    <student>
+        <name>李四</name>
+        <age>16</age>
+        <score>
+            <english>80</english>
+            <math>70</math>
+            <chinese>66</chinese>
+        </score>
+    </student>
+
+</root>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>魔方</title>
+	<style >
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.container{
+			height: 300px;
+			width: 300px;
+			border: 1px solid black;
+			margin: 300px auto;
+			perspective:5000px;
+		}
+		.box{
+			height: 300px;
+			width: 300px;
+			/*控制子元素保持3d转换*/
+			/*-webkit-transform-style: preserve-3d;
+			-moz-transform-style: preserve-3d;
+			-ms-transform-style: preserve-3d;*/
+			transform-style: preserve-3d;
+			animation:ro 4s linear infinite;
+
+			/*匀速一直转*/
+
+			}
+		@keyframes ro{
+			0%{
+				transform:rotateX(0deg) rotateY（0deg）;
+			}
+			100%{
+				transform:rotateX(360deg) rotateY(360deg);
+			}
+		}
+		
+		.box-page{
+			width: 300px;
+			height: 300px;
+			position: absolute;
+			transform-style:preserve-3d;
+		}
+		.top{
+			background-color: red;
+			transform: translateZ(150px);			
+		}
+		.bottom{
+			background-color: green;
+			transform: translateZ(-150px);
+		}
+		.left{
+			background-color: orange;
+			transform:rotateX(90deg) translateZ(-150px);
+
+		}
+		.right{
+			background-color: blue;
+			transform:rotateX(90deg) translateZ(150px);
+
+		}
+		.before{
+			background-color: yellow;
+			transform:translateX(150px) rotateY(90deg);
+		
+		}
+		.after{		
+			background-color: purple;
+			transform:translateX(-150px) rotateY(90deg);
+		}
+/*		@keyframes a1{
+			0%{transform:translateZ(0px) scale(1) rotateZ(0deg);}
+			20%{transform:translateZ(3000px) scale(0) rotateZ(720deg);}
+			6%{transform:translateZ(3000px) scale(0) rotateZ(720deg);}
+			100%{transform:translateZ(0px) scale(1) rotateZ(0deg);}
+
+		}
+		.box-page div:nth-child(1){
+			-webkit-animation: a1 4.5s ease-in;
+			-o-animation: a1 4.5s ease-in;
+			animation: a1 4.5s ease-in;
+		}
+		.box-page div:nth-child(2){
+			animation: a1 4.5s ease-in 0.5s;
+		}
+		.box-page div:nth-child(3){
+			animation: a1 4.5s ease-in 0.5s;
+		}
+		.box-page div:nth-child(4){
+			animation: a1 4.5s ease-in 0.5s;
+		}
+		.box-page div:nth-child(5){
+			animation: a1 4.5s ease-in 0.5s;
+		}
+		.box-page div:nth-child(6){
+			animation: a1 4.5s ease-in 0.5s;
+		}*/
+
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="box">
+			<div class="box-page top"></div>
+			<div class="box-page bottom"></div>
+			<div class="box-page left"></div>
+			<div class="box-page right"></div>
+			<div class="box-page before"></div>
+			<div class="box-page after"></div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		var arr=document.querySelectorAll(".box-page");
+		for(var n=0;n<arr.length;n++){
+			for(var r=0;r<3;r++){
+				for(var c=0;c<3;c++){
+					//创建元素
+					var divs=document.createElement("div");
+					divs.style.cssText="width:100px;height:100px;border:2px solid #fff;box-sizing:border-box;background-color:red;position:absolute;background-image:url(image/a+'n'+jpg);background-size:300px 300px";
+					arr[n].appendChild("divs");
+
+					// dics.style.left=c*100+"px";
+					// dics.style.left=r*100+"px";
+
+					// //北京图像定位
+					// divs.style.backgroundPositionX=-c*100+"px";
+					// divs.style.backgroundPositionY=-r*100+"px";
+
+				}
+			}
+		}
+	</script>	
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>DOM操作</title>
+</head>
+<body>
+    <div class="demo" id="first"></div>
+    <div class="demo" id="second"></div>
+    <div class="demo" id="third"></div>
+
+    <div class="wrapper">
+        <ul>
+            <li>
+                <ul>
+                    <li class="active">1</li>
+                    <li class="active">2</li>
+                    <li>3</li>
+                    <li>4</li>
+                </ul>
+            </li>
+            <li class="demo">
+                <p class="demo">P标签</p>
+            </li>
+            <li>3</li>
+            <li class="demo">4</li>
+            <li>5</li>
+        </ul>
+    </div>
+
+<!--    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>-->
+    <script src="./JS/myJQuery.js"></script>
+    <script>
+        //get:从筐里拿出特定元素=>编程原生元素，不能继续使用JQuery方法
+        //0,1,2,3筐中的元素位置，使用极少
+        console.log($('.demo').get(0));
+
+        // $('.wrapper').css({position:'relative'});
+        // $('.wrapper ul').css({listStyle:'none'});
+        // $('.wrapper ul li').css({color:'red'})
+        //prevObject  .find()
+        // $('.wrapper').css({position:'relative'})
+        //         .find('ul').css({listStyle:'none',border:'1px solid black'})
+        //             .find('li').css({color:'red'});
+        // console.log($('.wrapper').find('ul').find('li'));
+
+        //
+        // //.filter() 基于之前的进行过滤，只能在当前范围内进行限制，不能选择其他的标签
+        // //.not() 反选
+        // $('.wrapper ul').find('li')
+        //     .filter('.demo').css({color:'blue'});
+        // $('.wrapper ul li').filter(function (index,ele) {
+        //     return  index%2==0;
+        // }).css({color:'pink'});
+        //
+        //
+        // //.has() 筛选
+        // console.log($('li').has('ul').css({backgroundColor: 'green'}));
+        //
+        //
+        // //.is() return bool有交集TRUE
+        // console.log($('.wrapper .demo').is('li'));
+        // $('ul').click(function (e) {
+        //     if($(e.target).is('li')){
+        //         alert($(e.target).text());
+        //     }else {
+        //         alert($(this).text());
+        //     }
+        // })
+        // var flag=$('.wrapper .demo').is('p');
+        // console.log('flag:'+flag);
+        //
+        //
+
+        //.add()基于多个元素进行同一个样式操作
+        //。end（） 回退到preObject
+        // $('.wrapper').add('ul').css({fontWeight:'bold'});
+        // $('.wrapper').css({position: 'relative'})
+        //         .find('ul').css({position:'absolute'})
+        //                 //.end().css({position:absolute});//end 回退到preObject
+
+
+    </script>
+
+
+</body>
+</html>

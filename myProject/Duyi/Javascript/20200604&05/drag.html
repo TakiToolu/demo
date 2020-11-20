@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖拽</title>
+    <style>
+        *{
+            margin: 0;
+        }
+        #box{
+            width: 100px;
+            height: 100px;
+            background-color: #9fd7dc;
+            border: black solid 1px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="box"></div>
+<script>
+    //这种实现方式，当鼠标快速移动，box跟不上时，box会脱离鼠标，不随其移动
+    var oBox=document.getElementById('box');
+    var obody=document.getElementsByTagName('body')[0];
+    function binEvent(ele,wrap) {
+        //dowm-move-up
+        var X,//鼠标位置
+            Y,
+            boxL,//盒子横坐标
+            boxT,
+            disL,//鼠标距盒子边框的距离
+            disT;
+        var drag=false;
+        ele.onmousedown=function (e) {
+            var event=e || window.event;//获取原事件，为了兼容IE
+            X=event.clientX;
+            Y=event.clientY;
+            boxL=oBox.offsetLeft;
+            boxT=oBox.offsetTop;
+            disL=X-boxL;
+            disT=Y-boxT;
+            drag=true;
+        }
+        obody.onmousemove=function (e) {
+            var event=e || window.event;
+            if(drag){
+                oBox.style.left=event.clientX-disL+'px';
+                oBox.style.top=event.clientY-disT+'px';
+            }
+        }
+        ele.onmouseup=function (e) {
+            var event=e || window.event;
+            drag=false;
+        }
+    }
+    binEvent(oBox,obody)
+</script>
+
+</body>
+</html>

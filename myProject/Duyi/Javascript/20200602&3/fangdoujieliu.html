@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖节流</title>
+</head>
+<body>
+<div id="show">0</div>
+<button id="btn">click</button>
+<input type="text" id="inp"></input>
+
+<script>
+    var oDiv=document.getElementById('show');
+    var oBt=document.getElementById('btn');
+    //节流
+    function throttle(handler,wait) {
+        var lastTime=0;
+        return function (e) {
+            var nowTime=new Date().getTime();
+            if((nowTime-lastTime)>wait){
+                handler.apply(this,arguments);
+                lastTime=nowTime;
+            }
+        }
+    }
+    function buy(e){
+        console.log(this,e);
+        oDiv.innerText=parseInt(oDiv.innerText)+1;
+    }
+    oBt.onclick=throttle(buy,1000)
+
+    //脚本console中调试
+    // console.time('a');
+    // for (var i = 0; i <100000; i++) {
+    //     oBt.click();
+    // }
+    // console.timeEnd('a');
+
+    //防抖 封装至函数
+   // var timer=null;
+    var oInp=document.getElementById('inp');
+
+    function debounce(handler,delay) {
+        var timer=null;
+        return function () {
+            var _self=this,_arg=arguments;
+            clearTimeout(timer);
+            timer=setTimeout(function () {
+                //真正执行的功能
+                ajax.apply(_self,_arg);
+            },delay);
+        }
+    }
+
+
+    /*function ajax() {
+        console.log(this.value);
+    }
+    oInp.oninput=function () {
+        var _self=this,_arg=arguments;
+        clearTimeout(timer);
+        timer=setTimeout(function () {
+            //真正执行的功能
+            ajax.apply(_self,_arg);
+        },1000)
+    };*/
+
+
+
+
+</script>
+</body>
+</html>

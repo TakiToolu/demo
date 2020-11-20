@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>changeColor</title>
+    <style>
+        *{
+            margin=0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .box{
+            width: 200px;
+            margin: 20px auto;
+        }
+        .box li{
+            line-height: 35px;
+            border-bottom: 1px dashed #AAA;
+            /*可点击的小手*/
+            cursor：pointer;
+            /*超出一行的自动剪裁，超出隐藏*/
+            text-overflow:ellipsis ;
+            white-space: nowrap;
+            overflow: hidden;
+
+        }
+
+    /*    CSS3实现 隔行
+        .box li:nth-child(even){
+            background-color: antiquewhite;
+        }
+        .box li:nth-of-type(3n){
+            color: #e3ef30;
+        }
+        */
+/*
+        .box li:hover{
+            background-color: rgba(0, 255, 255, 0.78);
+        }
+*/
+
+        #hover{
+            background-color: gold;
+        }
+        .bg0{
+            background-color: antiquewhite;
+        }
+        .bg1{
+            background-color: #9fd7dc;
+        }
+        .bg2{
+            background-color: #dbc1f3;
+        }
+        .hover{
+            background-color: #ff7fbb;
+        }
+    </style>
+</head>
+<body>
+<ul class="box" id="oBox">
+    <li>wodemaya</li>
+    <li>这是什么</li>
+    <li>不知道快捷键是什么</li>
+    <li>只能一个一个的输入进去了,这里尝试折行效果</li>
+    <li>确实挺麻烦的，确实</li>
+    <li>我也是二指禅呀</li>
+</ul>
+<script src="../JS/highLight.js"></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>callback</title>
+</head>
+<body>
+<!--<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>-->
+<script src="./JS/myJQuery.js"></script>
+<script>
+    //once,回调函数只执行一次
+   // var cb=$.Callbacks('once');
+   //  var cb=$.myCallbacks('once');
+
+    //memory 带有记忆功能,会将所有add的函数都执行
+    //var cb=$.Callbacks();/'memory');
+    var cb=$.myCallbacks('oncememory');
+
+    //unique:add添加时，同一函数只添加一次
+    // var cb=$.Callbacks('unique');
+
+    //stopOnFalse:执行函数时遇到return false时停止继续执行
+   // var cb=$.Callbacks('stopOnFalse');
+
+    function a(x,y) {
+        console.log('a',x,y);
+        return false;
+    }
+    function b(x,y) {
+        console.log('b',x,y);
+
+    }
+    cb.add(a);
+    cb.add(b);
+    //cb.add(a,b);
+    // cb.fire('10','20');
+    // cb.fire('10','20');
+    // cb.fire('once');
+    cb.fire('oncememory');
+    cb.fire('oncememory');
+
+    function c(x,y){
+        console.log('c',x,y);
+    }
+    cb.add(c);
+   // cb.fire('22','33');
+    cb.fire('oncememory');
+
+
+</script>
+</body>
+</html>

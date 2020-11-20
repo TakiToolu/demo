@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音量调节器</title>
+    <style type="text/css">
+        *{
+            margin: 0;//浏览器与body之间默认8px边距
+        }
+        div{
+            height: 100px;
+            width: 100px;
+        }
+        #box1{
+            background-color: #0d3462;
+            position: absolute;
+            left: 0;
+            top: 0;
+            cursor: pointer;
+            z-index: 10;
+        }
+        #box2{
+            background-color: #ff7fbb;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+    </style>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+    <script type="text/javascript">
+        var oBox1=document.getElementById('box1');
+        var oBox2=document.getElementById('box2');
+        var obody=document.getElementsByTagName('body')[0];
+        //鼠标事件
+        var eX,eY;//鼠标坐标
+        var boxX,boxY;//box1左上角位置
+        var disX,disY;//点击点与box1左上角相距离
+
+        var coverX=0,coverY=0;//两box覆盖边长
+        var flag=false;
+        var loca2X=oBox2.offsetLeft,
+            loca2Y=oBox2.offsetTop;
+        function  bindEvent() {
+            oBox1.onmousedown=function (e) {
+                flag=true;
+                var event=e||window.event;
+                eX=event.clientX;
+                eY=event.clientY;
+                boxX=oBox1.offsetLeft;
+                boxY=oBox1.offsetTop;
+                disX=eX-boxX;
+                disY=eY-boxY;
+               // console.log('按下鼠标');
+
+            }
+            obody.onmousemove=function (e) {
+                var event=e||window.event;
+                console.log('ceshi');
+                if(flag){
+                    oBox1.style.left=event.clientX-disX+'px';
+                    oBox1.style.top=event.clientY-disY+'px';
+                    //console.log('滑动鼠标'+oBox1.offsetLeft+oBox1.offsetTop+' '+event.clientX+" "+event.clientY);
+                   var teml=oBox1.offsetLeft-oBox2.offsetLeft;
+                   var temt=oBox1.offsetTop-oBox2.offsetTop;
+                    if(Math.abs(teml)<=100){
+                        coverX=teml<0?(100-teml):teml;
+                        coverY=temt<0?(100-temt):temt;
+                    }
+                    console.log(coverX*coverY);
+                }
+            }
+            obody.onmouseup=function (e) {
+                var event=e||window.event;
+                flag=false;
+             //   console.log('抬起');
+            }
+        }
+        bindEvent();
+    </script>
+
+</body>
+</html>

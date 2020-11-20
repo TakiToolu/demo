@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>位置</title>
+</head>
+<body>
+<div class="demo" style="width: 100px;height: 100px;background-color: #60bce0;position:absolute"></div>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    var obj={
+        0:"a",
+        1:"b",
+        2:"c",
+        length:3,
+        slice:Array.prototype.slice
+    }
+    var arr=$.makeArray('d',obj);
+    console.log(arr);
+
+    //$.extend():将自定义方法加到工具方法内
+    //$.fn.extend():添加到实例方法
+    $.fn.extend({
+        definedMandom:function(start,final){
+            var len=final-start;
+            return parseInt(Math.random()*len+start);
+        },
+        drag:function () {
+            var disX,disY,self=this;
+            $(this).on('mousedown',function (e) {
+                disX=e.pageX-$(this).offset().left;
+                disY=e.pageY-$(this).offset().top;
+                $(document).on('mousemove',function (e) {
+                    $(self).css({left:e.pageX-disX,top:e.pageY-disY});
+                })
+                $(document).on('mouseup',function (e) {
+                    $(document).off('mousemove').off('mouseup');
+                })
+            return this;
+            })
+        }
+    });
+    //1、扩展方法
+    $('.demo').drag();
+    //2、浅层克隆
+    var obj1={
+        name:'zxx',
+        age:18
+    }
+    var obj2={
+        name:'csd',
+        age:14,
+        smoke:true,
+        gl:{
+            name:'zxc',
+            age:13
+        }
+    }
+    var obj3={
+        name:'sss',
+        age:24
+    }
+    $.extend(true,obj1,obj2,obj3);
+    console.log(obj2);
+    console.log(obj1);
+
+
+</script>
+</body>
+</html>

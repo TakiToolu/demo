@@ -1,0 +1,12 @@
+(function(){
+    require.config({
+        paths:{
+            m2:'./modules/m2.js',
+            m1:'./modules/m1.js'
+        }
+    })
+    require(['m2','jquery.js]',function(m2,$){
+        m2.show();
+        $('body').css('backgroundColor','#000');
+    }])
+})();

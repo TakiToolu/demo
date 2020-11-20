@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>wap</title>
+    <style>
+        .bac{
+            background-color: #9fd7dc;
+            width: 50px;
+            height: 50px;
+        }
+        .dodo{
+            /*height: 50px;*/
+            width: 100px;
+            background-color: #cccccc;
+        }
+        .demo{
+            height: 40px;
+            width: 100px;
+            background-color: #ff7fbb;
+        }
+
+        .stu{
+            height: 200px;
+            width: 200px;
+        }
+        .tp1{
+            display: none;
+            position: absolute;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="demo">
+    <button id="btn0">aaa</button>
+</div>
+<div class="demo">
+    <button id="btn1">bbb</button>
+</div>
+<div class="demo">
+    <button id="btn2">ccc</button>
+</div>
+
+<div class="dodo">实例</div>
+
+<table class="stu">
+    <tr >
+        <th>姓名</th>
+        <th class="demo1">年龄</th>
+        <th>班级</th>
+    </tr>
+    <tr class="tp1">
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    <tr class="sum">ddd</tr>
+</table>
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<!--<script src="./JS/myJQuery.js"></script>-->
+<script>
+   // $('button').eq(0).wrap('<div class="bac">');
+   // $('button').eq(1).wrap($('.dodo'));
+
+   // //wrapInner()
+   //  $('.demo').wrapInner(function (index) {
+   //      var str='<div class="dodo'+index+'"></div>';
+   //      console.log(str);
+   //      return str;
+   //  });
+
+
+    //wrapAll()
+    $('.demo').wrapAll($('.dodo'));
+   $('.demo').click(function () {
+       alert('0');
+
+   })
+   //$('.demo').eq(0).unwrap($('.dodo'));
+    $('.demo').clone(true).appendTo('body');
+
+
+
+    var stuArr=[
+        {
+            name:'赵晓',
+            age:18,
+            class:2
+        }, {
+           name:'李云',
+           age:16,
+           class:3
+       }, {
+           name:'张万',
+           age:52,
+           class:4
+       },
+    ];
+
+
+    var oWrapper = $('.stu')
+    stuArr.forEach(function (ele,index) {
+        var oCloneDom=$('.tp1').clone().removeClass('tp1');
+        console.log(oCloneDom);
+        oCloneDom.find('th').eq(0).text(ele.name)
+                .next().text(ele.age)
+                    .next().text(ele.class);
+        oWrapper.append(oCloneDom);
+    });
+
+    $('<tr class="sum"></tr>')appendTo($('.stu'));
+
+
+    //data()寸信息、数据、状态
+    $('.demo1').data('data',18);
+
+   $('.tp1').data({
+       name:'cst',
+       age:13,
+       class:2
+   });
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

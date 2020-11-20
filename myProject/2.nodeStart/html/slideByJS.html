@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .bar{
+            height: 100px;
+            width: 400px;
+            position: relative;
+            background-color: #9fd7dc;
+            left: -340px;
+            margin-top: 50px;
+            /*right: -340px;*/
+
+
+        }
+        .inbar{
+            height: 100px;
+            width: 60px;
+            position: absolute;
+            background-color: #ff7fbb;
+            right: 0;
+
+        }
+        #button{
+            margin-top: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="bar">
+    <div class="inbar"></div>
+</div>
+<div class="bar">
+    <div class="inbar"></div>
+</div>
+<div class="bar">
+    <div class="inbar"></div>
+</div>
+<div class="bar">
+    <div class="inbar"></div>
+</div>
+<div class="bar">
+    <div class="inbar"></div>
+</div>
+<button id="button">动</button>
+<script type="text/javascript">
+
+    let inbars=document.getElementsByClassName("bar");
+   // let bt=document.getElementsByClassName('button');
+   // let timer=null;
+
+    let attrObj1={left:0};//width:200, height:200, left:100,opacity:0.5};
+    let attrObj2={opacity:50};//left:-150};//, opacity:0.5};
+   /* bt.onclick=function () {
+        myMove(inbar,0);
+    }*/
+
+    for(let i=0;i<inbars.length;i++) {
+
+        inbars[i].onmouseenter = function () {
+            myMove(this,attrObj1);
+            this.timer=null;
+            console.log(this.timer);
+        }
+        inbars[i].onmouseleave = function () {
+            myMove(this,attrObj2);
+
+        }
+    }
+
+
+    function getStyle(dom,ttr){
+        if(window.getComputedStyle){
+            return(window.getComputedStyle(dom,null)[ttr]);
+        }else {
+            return dom.currentStyle[ttr];
+        }
+    }
+    function myMove(dom,attrObj) {
+        clearInterval(dom.timer);
+        console.log(dom.timer);
+        var speed=null;
+        //var target=0;
+        let icol=null;
+
+        dom.timer=setInterval(function () {
+            //clearInterval(dom.timer);
+            var bStop=true;
+            for(let attr in attrObj) {
+                if(attr=='opacity'){
+                    icol=parseFloat(getStyle(dom,attr))*100;
+                }else{
+                    icol=parseInt(getStyle(dom,attr));
+                }
+                 console.log("1、当前attr："+attr+' ' + 'icol:'+icol);
+                console.log(attrObj[attr]);
+                speed= (attrObj[attr]-icol) /3;
+                 console.log("2、1 当前speed："+speed);
+                speed=speed < 0 ? Math.floor(speed) : Math.ceil(speed);
+                 console.log("2、当前speed："+speed);
+                if(attr=='opacity') {
+
+                    debugger
+                    dom.style.opacity = ((icol + speed)/100);
+                    console.log("enter opacity："+dom.style.opacity);
+                }else {
+                   console.log("enter else："+dom.style[attr]);
+                    dom.style[attr] = icol + speed + 'px';
+                }
+                console.log("3、当前attr："+dom.style[attr]);
+                console.log(" ");
+                if (icol!=attrObj[attr]) {
+                    bStop=false;
+                }
+            }
+            if(bStop){
+                console.log(dom.timer);
+                window.clearInterval(dom.timer);
+                dom.timer=0;
+                console.log(dom.timer);
+            }
+        },300);
+
+    };
+
+
+
+
+
+/*
+
+
+
+    function startMove(dom,col,target) {
+
+       // clearInterval(timer);
+        console.log("ceshi");
+        let ispeed=null,nowcol=null;
+        let timer=setInterval(function(){
+            nowCol=parseInt(getStyle(dom,col));
+            ispeed=Math.floor((target-nowCol)/8);
+            console.log("进入定时器");
+            console.log(nowCol);
+            console.log(ispeed);
+            console.log(target);
+            dom.style.Left=dom.offsetLeft+ispeed;//+'px';
+            console.log(dom.offsetLeft);
+            if(Math.abs(target-nowCol)<Math.abs(ispeed)){
+                clearInterval(timer);
+                console.log("出定时器");
+            }else{
+               // debugger
+                console.log(dom);
+                console.log(ispeed);
+                console.log(dom.style.Left);
+                dom.innerHTML="tianjia";
+                dom.style.Left=dom.offsetLeft+ispeed;//+'px';
+                console.log(dom.style.Left);
+                console.log("重设位置为："+dom.offsetLeft);
+
+            }
+
+            //dom.style.col='400px';
+
+        },4000)
+
+
+    }
+
+
+   // let  inbar=document.getElementById("bar");
+    inbar.onmouseenter=function () {
+
+        console.log("鼠标划入");
+        startMove(this,'left',0);
+
+    }
+    inbar.onmouseleave=function () {
+        console.log("鼠标划出");
+        startMove(this,'left',0);
+    }*/
+</script>
+</body>
+</html>

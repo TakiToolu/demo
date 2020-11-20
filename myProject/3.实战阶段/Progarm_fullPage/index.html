@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+<!--    <link rel="stylesheet" href="./css/jquery.fullPage.css">-->
+    <style>
+      /*  html,body{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .wrapper{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background-color: #60bce0;
+        }
+        .section{
+            height: 100%;
+            width: 100%;
+        }
+        .section .slide{
+            float: left;
+            height: 100%;
+            !*width: js->$(window).outerWider;*!
+
+        }
+        .wrapper .slideWrapper{
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            !*width: $(window).outerWidth()*slice.length;*!
+        }*/
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="section">
+         <div class="component" style="display:none;text-align:center;font-size: 30px;">
+            <p>1</p>
+        </div>
+<!--        <div class="slideWrapper">-->
+            <!-- <div class="slide">1.1</div>
+            <div class="slide">1.2</div>
+            <div class="slide">1.3</div> -->
+<!--        </div>-->
+    </div>
+    <div class="section">
+<!--        <div class="slideWrapper">-->
+            <div class="slide">2.1</div>
+            <div class="slide">2.2</div>
+            <div class="slide">2.3</div>
+<!--        </div>-->
+    </div>
+    <div class="section">
+        <div class="slide">3.1</div>
+        <div class="slide">3.2</div>
+        <div class="slide">3.3</div>
+    </div>
+    <div class="section">
+        <div class="slide">4.1</div>
+        <div class="slide">4.2</div>
+        <div class="slide">4.3</div>
+    </div>
+</div>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<!--<script src="./js/jquery.fullPage.min.js"></script>-->
+<!--<script src="./js/jquery.fullPage.js"></script>-->
+<script src="./src/js/tool/myFullPage.js"></script>
+<script src="./src/js/tool/jquery.fullPage.js"></script>
+<script src="./src/js/entry.js"></script>
+
+<script>
+    // $('.wrapper').myFullPage({
+    //     afterLoad: function (anchor,index) {
+    //         console.log('load'+index);
+    //     },
+    //     onLeave: function (anchor,index) {
+    //         console.log('leave'+index);
+    //     }
+    // })
+
+    $('.wrapper').myFullPage({
+        colorsArray :['red','blue','green'],
+        onLeave:function(index,direction){
+            // console.log(index,direction);$
+            $('.section').eq(index).find('.component').fadeOut();
+            
+        },
+        afterload:function(index,direction){
+            // console.log(index,direction);
+            $('.section').eq(index).find('.component').fadeIn();
+
+
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>动画</title>
+    <style>
+        .demo{
+            width: 200px;
+            border:2px solid black;
+        }
+        ul{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div class="demo">
+    <p>来吧，展示：</p>
+    <ul>
+        <li>1身高：162</li>
+        <li>2体重：50kg</li>
+        <li>3性格：文静</li>
+    </ul>
+</div>
+<script src="./JS/myJQuery.js"></script>
+<!--<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>-->
+<script>
+    // $('p').on('mouseenter',function () {
+    //     $(this).next().show(1000,'linear');
+    // })
+    // $('.demo').mouseleave(function () {
+    //     $('p').next().hide(1000,'swing');
+    // })
+
+    $('p').on('click',function () {
+        if($(this).next().css('display')=='none'){
+           // $(this).next().show(100);
+           //$(this).next().fadeIn();
+            $(this).next().fadeTo(1500,0.6,'swing',function () {
+                console.log('over1');
+            });
+        }else{
+           // $(this).next().hide(100);
+            $(this).next().fadeOut();
+        }
+
+
+    })
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .demo{
+            height: 100px;
+            width: 100px;
+            background-color: #ccffff;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="demo"></div>
+    <ul class="demo">
+        <li>a</li>
+        <li>b</li>
+        <li>c</li>
+    </ul>
+    <a href="http://www.baidu.com" target="_blank">aaaa</a>
+    <input type="text" class="demo1">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<!--    <script src="./JS/myJQuery.js"></script>-->
+<script>
+
+    function deno(){
+        alert ('0');
+    }
+    //.on()绑定事件
+    //  $('.demo').on('click',deno);
+    // $('.demo').on('mouseenter',function () {
+    //     alert('1');
+    // });
+    // $('.demo').on('click',{name:'zxx'},function (e) {
+    //     console.log(e.data);
+    //
+    // })
+    /*
+    $('.demo').on('click','li',{age:15},function (e) {
+        alert($(e.target).text());
+        console.log(e.data);
+    })
+
+    //一次性，广告弹出
+    $('a').one('click',function () {
+        window.open('https://www.taobao.com');
+        return false;
+    })
+    function clickOne() {
+        console.log('enter')
+    }
+    $('.demo').on({
+        click: function () {
+            console.log('click');
+        },
+        mouseenter : clickOne
+    });
+    //$('.demo').off('mouseenter');
+    //$('.demo').off();
+    $('.demo').off('mouseenter','li',clickOne);
+*/
+    //
+    // $('.demo').myOn('pageLoad',function (a,b,c,d) {
+    //     console.log(a,b,c,d);
+    //
+    // })
+    // //trigger()触发自定义事件，可传参
+    // $('.demo li').myTrigger('pageLoad',10,2,3,4);
+
+    //hover
+    // $('.demo').on('mouseenter',function () {
+    //     console.log('enter');
+    // }).on('mouseleave',function () {
+    //     console.log('leave');
+    // })
+
+    $('.demo').hover(function () {
+        console.log('enter');
+    },function () {
+        console.log('leave')
+
+    })
+
+    $('.demo1').keydown(function () {
+        console.log('keydown');
+    })
+
+    
+
+</script>
+</body>
+</html>

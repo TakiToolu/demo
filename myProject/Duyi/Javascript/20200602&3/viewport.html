@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" >
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Title</title>
+    <style type="text/css">
+/*        *{
+            padding: 0;
+            margin: 0;
+          //  list-style: none;
+        }*/
+
+  /*      .listyle{
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            background-color: black;
+        }*/
+    </style>
+</head>
+<body>
+<ul>
+    <li class="listyle"></li>
+    <li class="listyle"></li>
+    <li class="listyle"></li>
+    <li class="listyle"></li>
+    <li class="listyle"></li>
+
+
+</ul>
+
+
+<script>
+    //数据可视化
+    //展示server发来的数据
+    var personArr=[
+        {name:'daidai',src:'../pic/dai.jpg',des:'我是小黄毛',sex:'m',age:16},
+        {name:'懒懒',src:'../pic/Lan.jpg',des:'我是小懒猫',sex:'f',age:18},
+        {name:'丫丫',src:'../pic/yaya.jpg',des:'小鸭子是我',sex:'m',age:18},
+        {name:'苗苗',src:'../pic/miao.jpg',des:'在偷窥',sex:'m',age:20},
+        {name:'咪咪',src:'../pic/mi.jpg',des:'我在睡觉觉',sex:'f',age:17}
+    ];
+/*
+    personArr.forEach(function(ele,index,self){
+       // console.log(ele,index,self);
+        this[index].innerHTML=ele.name;
+        //console.log(this.index);
+        //this
+    },document.getElementsByTagName('li'));
+    //实现forEach(function(){},)遍历
+    Array.prototype.myForEach=function (func) {
+        var _arr=this,len=_arr.length,param2=arguments[1]||window;
+        for (var i=0;i<len;i++){
+            func.apply(param2,[_arr[i],i,_arr]);
+        }
+    }
+    personArr.myForEach(function(ele,index,self){
+        console.log(ele,index,self);
+        this[index].innerHTML=ele.name;
+    },document.getElementsByTagName('li'));
+*/
+
+
+
+/*
+/!*   var newArr=personArr.filter(function (ele,index,self) {
+       console.log(ele,index,self,this);
+       return ele.sex=='m'? true:false;
+   });*!/
+    //实现 filter 条件筛选、数据过滤 ele index self->this return true返回到一个新数组成功
+
+    //没成功，apply函数未执行成功，暂时无法结局
+
+    Array.prototype.myFilter=function (func) {
+        var _arr=this,len=_arr.length,param2=arguments[1]||window,newArr=[];
+      //  console.log(_arr,len,self,this);
+        for(var i=0;i<len;i++){
+          //错误代码 func.apply(param2, arguments[_arr[i],i,_arr]) ;
+            func.apply(param2,[_arr[i],i,_arr]) ? newArr.push(_arr[i]):console.log('没进去l');
+           if(newArr)console.log(newArr);
+        }
+        return newArr;
+    }
+    var newArr=personArr.myFilter(function (ele,index,self) {
+       console.log(ele,index,self,this);
+        return ele.sex=='m';
+    }, personArr);//console.log(ele,index,self,this);
+    //,{name:"daidai"});
+    console.log(newArr);
+*/
+
+
+
+/*
+    //map映射 x->y  function ele index self 返回新数组
+/!*
+    var newArr=personArr.map(function(ele,index,self){
+        console.log(ele,index.self,this);
+        return ele.name+10;
+    },{name:'zxx'});
+
+*!/
+    Array.prototype.myMap=function (func) {
+        var _arr=this,len=_arr.length,param2=arguments[1]||windows,newArr=[];
+        for (var i=0;i<len;i++){
+            newArr.push(func.apply(param2,[_arr[i],i,_arr]));
+        }
+        return newArr;
+    }
+    var newArr=personArr.myMap(function(ele,index,self){
+        console.log(ele,index.self,this);
+        return ele.name+10;
+    },{name:'zxx'});
+*/
+
+
+
+/*
+    //every:整体每一个都满足 return true
+    // var flag=personArr.every(function (ele,index,self) {
+    //     console.log(ele,index,self,this);
+    //     return ele.age>15;
+    // },{name:'zxx'});
+    // console.log(flag);
+
+    Array.prototype.myEvery = function (func) {
+        var _arr=this,len=_arr.length,param2=arguments[1]||windows,flag = true;
+        for(i=0;i<len;i++){
+            if(func.apply(param2,[_arr[i],i,_arr])){
+                flag=true;
+            }else{
+                flag=false;
+                return flag;
+            }
+        }
+        return flag;
+    }
+    var flag=personArr.myEvery(function (ele,index,self) {
+        console.log(ele,index,self,this);
+        return ele.age>16;
+    },{name:'zxx'});
+    console.log(flag);
+
+*/
+
+    var cookies="_octo=GH1.1.445214429.1579101162; _ga=GA1.2.869488867.1579101327; tz=Asia%2FShanghai"
+
+    //reduce 返回一个值function prevalue curvalue index self
+    // var initialValue={name:'zxx'};
+    // var lastValue=personArr.reduce(function(preValue,curValue,index,self){
+    //     console.log(preValue,curValue,index,self,initialValue);
+    //     preValue.name+=1;
+    //     return preValue;
+    // },initialValue);
+
+    Array.prototype.myReduce=function (func,initialValue) {
+        var _arr=this,len=_arr.length,param2=arguments[2]||window;
+        for(i=0;i<_arr.length;i++){
+            initialValue=func.apply(param2,[initialValue,_arr,i,_arr]);
+        }
+        return initialValue;
+    }
+
+    var initialValue={name:'zxx'};
+    var lastValue=personArr.myReduce(function(preValue,curValue,index,self){
+       // console.log(preValue,curValue,index,self,initialValue);
+        preValue.name+=1;
+        return preValue;
+    },initialValue);
+
+    function parseCookies(str) {
+        var arrCookie=str.split(';');
+        var cookieObj={};
+        arrCookie.reduce(function (preValue,curValue,indec,self) {
+            var curArr=curValue.split('=');
+            cookieObj[curArr[0]]=curArr[1];
+            console.log(curArr,cookieObj)
+        },cookieObj)
+        return cookieObj;
+    }
+    var arrayC=parseCookies(cookies);
+    console.log(arrayC);
+
+
+</script>
+</body>
+</html>

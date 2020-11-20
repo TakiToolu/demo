@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <ul id='ul'></ul>
+        <input type="text" id='name'>
+        <input type="text" id='age'>
+        <button type="submit" id='btn'></button>
+    </div>
+    
+<script>
+    function myAjax(method,url,data,callback,flag){
+        var xhr=null;
+        if(window.XMLHttpRequest){
+            xhr=new XMLHttpRequest;
+        }else{
+            xhr=new ActiveXObject('Microsoft.XMLHttp');
+        }
+        method=method.toUpperCase();
+        if(method=='GET'){
+            xhr.open(method,url+'?'+data,flag);
+            xhr.send();
+        } else{
+            //post
+            xhr.open(method,url,flag);
+            xhr.setRequestHeader('Content-type','application/x-www-form-urlencoded');
+            xhr.send(data);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState==4&&xhr.status==200){
+                        callback(xhr.responseText);          
+                }
+            }
+        }
+    }
+    function showdata(data){
+        var value=JSON.parse(data);
+        console.log(value);
+        var str='';
+        var $ul=$('ul');
+        value.forEach(function(index,ele){
+            str+='<li>'+ele.title+'-'+ele.data+'</li>';
+        });
+
+        $ul.innerHTML = str;
+        
+    }
+
+    wd=ab&cb=jQuery110207640240402413072_1592148530022&_=1592148530023q
+    myAjax()
+</script>
+
+</body>
+</html>

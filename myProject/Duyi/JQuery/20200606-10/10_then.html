@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+<script>
+    //Deferred 的核心then
+    var df = $.Deferred();
+    // df.done(function () {
+    //     console.log('done1');
+    // }).fail(function () {
+    //     console.log("fail");
+    // }).progress(function () {
+    //     console.log("ing");
+    // }).done(function () {
+    //     console.log("done2");
+    // })
+    //简化 链式
+    df.then(function (ms) {
+        console.log('done1');
+        return  'ok';
+    },function (ms) {
+        console.log("fail");
+    },function (ms) {
+        console.log("ing");
+    })//上面return 字符串，继续then使用的额还是df，若有返回新的Deferred，then的对象就是新的链式对象
+        .then(function (param) {
+        console.log('done1');
+    },function (param) {
+        console.log("fail");
+    },function (param) {
+        console.log("ing");
+    })
+
+
+    $.ajax({url,type,data}).then(function () {
+        //发送请求成功以后
+        return $.ajax();
+    },{
+        //失败时触发
+    }).then(function () {
+
+    })
+
+
+
+
+</script>
+</body>
+</html>
